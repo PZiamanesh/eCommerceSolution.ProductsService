@@ -2,6 +2,7 @@
 using BusinessLogicLayer.ServiceContracts;
 using DataAccessLayer.Entities;
 using FluentValidation;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace ProductsMicroService.API.ApiEndpoints;
 
@@ -18,6 +19,7 @@ public static class ProductApiEndpoint
         app.MapGet("/api/products/search/product-id/{productId:guid}", async (Guid productId, IProductService productService) =>
         {
             var product = await productService.GetProductBy(x => x.ProductID == productId);
+            if (product == null) { return Results.NotFound(); }
             return Results.Ok(product);
         });
 

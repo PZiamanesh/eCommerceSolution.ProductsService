@@ -12,9 +12,17 @@ public static class DataAccessConfigs
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        string templateConnectionString = configuration.GetConnectionString("MySqlDb")!;
+        string connectionString = templateConnectionString
+            .Replace("$MYSQL_HOST", Environment.GetEnvironmentVariable("MYSQL_HOST"))
+            .Replace("$MYSQL_PORT", Environment.GetEnvironmentVariable("MYSQL_PORT"))
+            .Replace("$MYSQL_DATABASE", Environment.GetEnvironmentVariable("MYSQL_DATABASE"))
+            .Replace("$MYSQL_USER", Environment.GetEnvironmentVariable("MYSQL_USER"))
+            .Replace("$MYSQL_PASSWORD", Environment.GetEnvironmentVariable("MYSQL_PASSWORD"));
+
         services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseMySQL(configuration.GetConnectionString("MySqlDb")!);
+            options.UseMySQL(connectionString);
         });
 
         services.AddScoped<IProductRepository, ProductRepository>();

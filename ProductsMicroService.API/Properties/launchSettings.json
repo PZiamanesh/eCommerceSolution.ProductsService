@@ -2,22 +2,33 @@
   "profiles": {
     "http": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MYSQL_HOST": "localhost",
+        "MYSQL_PORT": "3306",
+        "MYSQL_DATABASE": "ecommerceproductsdatabase",
+        "MYSQL_USER": "root",
+        "MYSQL_PASSWORD": "admin"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5106"
+      "applicationUrl": "http://localhost:5001",
+      "launchUrl": "swagger"
     },
     "https": {
       "commandName": "Project",
       "launchBrowser": false,
-      "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MYSQL_HOST": "localhost",
+        "MYSQL_PORT": "3306",
+        "MYSQL_DATABASE": "ecommerceproductsdatabase",
+        "MYSQL_USER": "root",
+        "MYSQL_PASSWORD": "admin"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7250;http://localhost:5106"
+      "applicationUrl": "https://localhost:7001",
+      "launchUrl": "swagger"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -32,7 +43,12 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
         "ASPNETCORE_HTTPS_PORTS": "8081",
-        "ASPNETCORE_HTTP_PORTS": "8080"
+        "ASPNETCORE_HTTP_PORTS": "8080",
+        "MYSQL_HOST": "localhost",
+        "MYSQL_PORT": "3306",
+        "MYSQL_DATABASE": "ecommerceproductsdatabase",
+        "MYSQL_USER": "root",
+        "MYSQL_PASSWORD": "admin"
       },
       "publishAllPorts": true,
       "useSSL": true
