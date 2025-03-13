@@ -14,7 +14,7 @@ public class ProductRepository : IProductRepository
         this.dbContext = dbContext;
     }
 
-    public async Task<Product?> AddProduct(Product product)
+    public async Task<Product> AddProduct(Product product)
     {
         dbContext.Products.Add(product);
         await dbContext.SaveChangesAsync();
@@ -54,12 +54,12 @@ public class ProductRepository : IProductRepository
         return await dbContext.Products.ToListAsync();
     }
 
-    public async Task<IEnumerable<Product?>> GetProductsBy(Expression<Func<Product, bool>> expression)
+    public async Task<IEnumerable<Product>> GetProductsBy(Expression<Func<Product, bool>> expression)
     {
         return await dbContext.Products.Where(expression).ToListAsync();
     }
 
-    public async Task<Product?> UpdateProduct(Product product)
+    public async Task<Product> UpdateProduct(Product product)
     {
         var entity = await dbContext.Products.FirstOrDefaultAsync(p => p.ProductID == product.ProductID);
 
