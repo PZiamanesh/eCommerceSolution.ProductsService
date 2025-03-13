@@ -1,7 +1,7 @@
-﻿using DataAccessLayer.Entities;
+﻿using ProductsMicroService.Core.Entities;
 using System.Linq.Expressions;
 
-namespace DataAccessLayer.RepositoryContracts;
+namespace ProductsMicroService.Core.RepositoryContracts;
 
 public interface IProductRepository
 {

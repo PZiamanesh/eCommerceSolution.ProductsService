@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsMicroService.API", "ProductsMicroService.API\ProductsMicroService.API.csproj", "{A864A1BE-D3F6-465C-9462-E8E014E818C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductsMicroService.API", "ProductsMicroService.API\ProductsMicroService.API.csproj", "{A864A1BE-D3F6-465C-9462-E8E014E818C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{05EA171C-92C5-460C-93D9-56BBC8AF19BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsMicroService.Core", "ProductsMicroService.Core\ProductsMicroService.Core.csproj", "{7493806F-9AB3-4532-8188-514742C5A104}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{4B6E7FE6-6614-46DE-9311-5270695A5032}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsMicroService.Infrastructure", "ProductsMicroService.Infrastructure\ProductsMicroService.Infrastructure.csproj", "{A1F4F5AB-4D79-4949-9D2A-805CA38567E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{A864A1BE-D3F6-465C-9462-E8E014E818C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A864A1BE-D3F6-465C-9462-E8E014E818C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A864A1BE-D3F6-465C-9462-E8E014E818C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05EA171C-92C5-460C-93D9-56BBC8AF19BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05EA171C-92C5-460C-93D9-56BBC8AF19BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05EA171C-92C5-460C-93D9-56BBC8AF19BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05EA171C-92C5-460C-93D9-56BBC8AF19BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B6E7FE6-6614-46DE-9311-5270695A5032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B6E7FE6-6614-46DE-9311-5270695A5032}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B6E7FE6-6614-46DE-9311-5270695A5032}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B6E7FE6-6614-46DE-9311-5270695A5032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7493806F-9AB3-4532-8188-514742C5A104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7493806F-9AB3-4532-8188-514742C5A104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7493806F-9AB3-4532-8188-514742C5A104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7493806F-9AB3-4532-8188-514742C5A104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1F4F5AB-4D79-4949-9D2A-805CA38567E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F4F5AB-4D79-4949-9D2A-805CA38567E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F4F5AB-4D79-4949-9D2A-805CA38567E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F4F5AB-4D79-4949-9D2A-805CA38567E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

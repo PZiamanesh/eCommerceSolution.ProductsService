@@ -1,9 +1,8 @@
-using BusinessLogicLayer;
-using DataAccessLayer;
 using FluentValidation.AspNetCore;
-using ProductsMicroService.API.ApiEndpoints;
 using ProductsMicroService.API.Middlewares;
+using ProductsMicroService.Core;
 using System.Text.Json.Serialization;
+using ProductsMicroService.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDataAccessLayer(builder.Configuration);
 builder.Services.AddBusinessLogicLayer();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(cnfg =>
+    {
+        cnfg.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+        cnfg.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 builder.Services.AddFluentValidationAutoValidation();
 
@@ -26,10 +30,8 @@ builder.Services.AddCors(ops =>
     });
 });
 
-builder.Services.ConfigureHttpJsonOptions(cfg =>
-{
-    cfg.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
-});
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // request pipeline
 
@@ -41,10 +43,12 @@ app.UseRouting();
 
 app.UseCors();
 
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapProductApiEndpoints();
 
 app.Run();

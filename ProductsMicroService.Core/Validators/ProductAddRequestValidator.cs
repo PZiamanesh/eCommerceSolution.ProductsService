@@ -1,15 +1,12 @@
-﻿using BusinessLogicLayer.Dtos;
-using FluentValidation;
+﻿using FluentValidation;
+using ProductsMicroService.Core.Dtos;
 
-namespace BusinessLogicLayer.Validators;
+namespace ProductsMicroService.Core.Validators;
 
-public class ProductUpdateRequestValidator : AbstractValidator<ProductUpdateRequest>
+public class ProductAddRequestValidator : AbstractValidator<ProductAddRequest>
 {
-    public ProductUpdateRequestValidator()
+    public ProductAddRequestValidator()
     {
-        RuleFor(x => x.ProductID)
-            .NotEmpty().WithMessage("ProductID is required");
-
         RuleFor(x => x.ProductName)
             .NotEmpty().WithMessage("ProductName is required");
 

@@ -1,4 +1,4 @@
-﻿namespace BusinessLogicLayer.Dtos;
+﻿namespace ProductsMicroService.Core.Dtos;
 
 public record ProductUpdateRequest : ProductAddRequest
 {

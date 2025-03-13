@@ -1,9 +1,9 @@
-﻿using BusinessLogicLayer.ServiceContracts;
-using BusinessLogicLayer.Services;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using ProductsMicroService.Core.ServiceContracts;
+using ProductsMicroService.Core.Services;
 
-namespace BusinessLogicLayer;
+namespace ProductsMicroService.Core;
 
 public static class BusinessLogicConfigs
 {

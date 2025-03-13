@@ -18,7 +18,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
+	  <ProjectReference Include="..\ProductsMicroService.Core\ProductsMicroService.Core.csproj" />
+	  <ProjectReference Include="..\ProductsMicroService.Infrastructure\ProductsMicroService.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>

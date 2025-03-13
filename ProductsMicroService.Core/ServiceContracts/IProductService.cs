@@ -1,8 +1,8 @@
-﻿using BusinessLogicLayer.Dtos;
-using DataAccessLayer.Entities;
+﻿using ProductsMicroService.Core.Dtos;
+using ProductsMicroService.Core.Entities;
 using System.Linq.Expressions;
 
-namespace BusinessLogicLayer.ServiceContracts;
+namespace ProductsMicroService.Core.ServiceContracts;
 
 public interface IProductService
 {

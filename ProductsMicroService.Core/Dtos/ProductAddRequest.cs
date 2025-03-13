@@ -1,8 +1,7 @@
-﻿namespace BusinessLogicLayer.Dtos;
+﻿namespace ProductsMicroService.Core.Dtos;
 
-public record ProductResponse
+public record ProductAddRequest
 {
-    public Guid ProductID { get; init; }
     public string ProductName { get; init; }
     public CategoryOptions Category { get; init; }
     public double? UnitPrice { get; init; }

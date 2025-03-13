@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DataAccessLayer.Entities;
+namespace ProductsMicroService.Core.Entities;
 
 public class Product
 {

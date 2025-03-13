@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using BusinessLogicLayer.Dtos;
-using DataAccessLayer.Entities;
+using ProductsMicroService.Core.Dtos;
+using ProductsMicroService.Core.Entities;
 
-namespace BusinessLogicLayer.MappingObjects;
+namespace ProductsMicroService.Core.MappingObjects;
 
 internal class ProductMappings : Profile
 {

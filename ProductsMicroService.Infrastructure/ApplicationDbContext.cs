@@ -1,7 +1,7 @@
-﻿using DataAccessLayer.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductsMicroService.Core.Entities;
 
-namespace DataAccessLayer;
+namespace ProductsMicroService.Infrastructure;
 
 public class ApplicationDbContext : DbContext
 {

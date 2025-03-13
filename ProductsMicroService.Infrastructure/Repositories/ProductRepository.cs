@@ -1,9 +1,9 @@
-﻿using DataAccessLayer.Entities;
-using DataAccessLayer.RepositoryContracts;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductsMicroService.Core.Entities;
+using ProductsMicroService.Core.RepositoryContracts;
 using System.Linq.Expressions;
 
-namespace DataAccessLayer.Repositories;
+namespace ProductsMicroService.Infrastructure.Repositories;
 
 public class ProductRepository : IProductRepository
 {
@@ -56,7 +56,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<IEnumerable<Product?>> GetProductsBy(Expression<Func<Product, bool>> expression)
     {
-       return await dbContext.Products.Where(expression).ToListAsync();
+        return await dbContext.Products.Where(expression).ToListAsync();
     }
 
     public async Task<Product?> UpdateProduct(Product product)

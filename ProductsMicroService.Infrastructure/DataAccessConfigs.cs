@@ -1,10 +1,10 @@
-﻿using DataAccessLayer.Repositories;
-using DataAccessLayer.RepositoryContracts;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProductsMicroService.Core.RepositoryContracts;
+using ProductsMicroService.Infrastructure.Repositories;
 
-namespace DataAccessLayer;
+namespace ProductsMicroService.Infrastructure;
 
 public static class DataAccessConfigs
 {

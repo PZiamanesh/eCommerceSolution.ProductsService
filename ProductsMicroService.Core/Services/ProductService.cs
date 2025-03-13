@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using BusinessLogicLayer.Dtos;
-using BusinessLogicLayer.ServiceContracts;
-using DataAccessLayer.Entities;
-using DataAccessLayer.RepositoryContracts;
 using FluentValidation;
+using ProductsMicroService.Core.Dtos;
+using ProductsMicroService.Core.Entities;
+using ProductsMicroService.Core.RepositoryContracts;
+using ProductsMicroService.Core.ServiceContracts;
 using System.Linq.Expressions;
 
-namespace BusinessLogicLayer.Services;
+namespace ProductsMicroService.Core.Services;
 
 public class ProductService : IProductService
 {
