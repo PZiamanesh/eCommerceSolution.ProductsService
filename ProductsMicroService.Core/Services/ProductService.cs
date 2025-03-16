@@ -2,6 +2,7 @@
 using FluentValidation;
 using ProductsMicroService.Core.Dtos;
 using ProductsMicroService.Core.Entities;
+using ProductsMicroService.Core.RabbitMQ;
 using ProductsMicroService.Core.RepositoryContracts;
 using ProductsMicroService.Core.ServiceContracts;
 using System.Linq.Expressions;
@@ -12,14 +13,17 @@ public class ProductService : IProductService
 {
     private readonly IProductRepository productRepository;
     private readonly IMapper mapper;
+    private readonly IRabbitMQPublisher rabbitMQPublisher;
 
     public ProductService(
         IProductRepository productRepository,
-        IMapper mapper
+        IMapper mapper,
+        IRabbitMQPublisher rabbitMQPublisher
         )
     {
         this.productRepository = productRepository;
         this.mapper = mapper;
+        this.rabbitMQPublisher = rabbitMQPublisher;
     }
 
     public async Task<ProductResponse> AddProduct(ProductAddRequest productAddRequest)
@@ -70,16 +74,30 @@ public class ProductService : IProductService
 
     public async Task<ProductResponse> UpdateProduct(ProductUpdateRequest productUpdateRequest)
     {
-        var product = await productRepository.GetProductBy(p => p.ProductID == productUpdateRequest.ProductID);
+        var currentProduct = await productRepository.GetProductBy(p => p.ProductID == productUpdateRequest.ProductID);
 
-        if (product is null)
+        if (currentProduct is null)
         {
             throw new ArgumentException("Invalid product Id");
         }
 
-        var updatedProduct = mapper.Map<Product>(productUpdateRequest);
+        var productToUpdate = mapper.Map<Product>(productUpdateRequest);
 
-        var updateResult = await productRepository.UpdateProduct(updatedProduct);
+        bool isProductNameChanged = productToUpdate.ProductName != currentProduct.ProductName;
+
+        var updateResult = await productRepository.UpdateProduct(productToUpdate);
+
+        if (isProductNameChanged)
+        {
+            string routingKey = "product.update.name";
+            var message = new ProductNameUpdateMessage
+            {
+                ProductID = updateResult.ProductID,
+                ProductName = productToUpdate.ProductName,
+            };
+
+            rabbitMQPublisher.Publish(routingKey, message);
+        }
 
         return mapper.Map<ProductResponse>(updateResult);
     }
