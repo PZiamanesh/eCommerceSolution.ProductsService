@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using ProductsMicroService.Core.Dtos;
 using ProductsMicroService.Core.Entities;
 using ProductsMicroService.Core.RabbitMQ;
@@ -93,10 +92,10 @@ public class ProductService : IProductService
             var message = new ProductNameUpdateMessage
             {
                 ProductID = updateResult.ProductID,
-                ProductName = productToUpdate.ProductName,
+                NewName = updateResult.ProductName
             };
 
-            rabbitMQPublisher.Publish(routingKey, message);
+            rabbitMQPublisher.Publish<ProductNameUpdateMessage>(routingKey, message);
         }
 
         return mapper.Map<ProductResponse>(updateResult);

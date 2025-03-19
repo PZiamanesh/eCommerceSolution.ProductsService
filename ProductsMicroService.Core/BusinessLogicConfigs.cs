@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProductsMicroService.Core.RabbitMQ;
 using ProductsMicroService.Core.ServiceContracts;
@@ -8,7 +9,10 @@ namespace ProductsMicroService.Core;
 
 public static class BusinessLogicConfigs
 {
-    public static IServiceCollection AddBusinessLogicLayer(this IServiceCollection services)
+    public static IServiceCollection AddBusinessLogicLayer(
+        this IServiceCollection services, 
+        IConfigurationRoot configuration
+        )
     {
         services.AddValidatorsFromAssembly(typeof(BusinessLogicConfigs).Assembly);
 

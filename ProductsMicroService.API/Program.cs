@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // ioc container
 
 builder.Services.AddDataAccessLayer(builder.Configuration);
-builder.Services.AddBusinessLogicLayer();
+builder.Services.AddBusinessLogicLayer(builder.Configuration);
 
 builder.Services.AddControllers()
     .AddJsonOptions(cnfg =>

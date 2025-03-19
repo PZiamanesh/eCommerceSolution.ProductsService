@@ -1,55 +1,53 @@
 ﻿using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
-using System.Text;
 using System.Text.Json;
+using System.Text;
 
 namespace ProductsMicroService.Core.RabbitMQ;
 
 public class RabbitMQPublisher : IRabbitMQPublisher, IDisposable
 {
-    private readonly IConfiguration configuration;
-    private readonly IConnection connection;
-    private readonly IModel channel;
+    private readonly IConfiguration _configuration;
+    private readonly IModel _channel;
+    private readonly IConnection _connection;
 
     public RabbitMQPublisher(IConfiguration configuration)
     {
-        this.configuration = configuration;
+        _configuration = configuration;
 
-        var hostname = this.configuration["RabbitMQ_HostName"]!;
-        var userName = this.configuration["RabbitMQ_UserName"]!;
-        var password = this.configuration["RabbitMQ_Password"]!;
-        var port = this.configuration["RabbitMQ_Port"]!;
+        string hostName = _configuration["RabbitMQ_HostName"]!;
+        string userName = _configuration["RabbitMQ_UserName"]!;
+        string password = _configuration["RabbitMQ_Password"]!;
+        string port = _configuration["RabbitMQ_Port"]!;
 
-        var connectionFactory = new ConnectionFactory()
+        ConnectionFactory connectionFactory = new ConnectionFactory()
         {
-            HostName = hostname,
+            HostName = hostName,
             UserName = userName,
             Password = password,
-            Port = int.Parse(port)
+            Port = Convert.ToInt32(port)
         };
+        _connection = connectionFactory.CreateConnection();
 
-        connection = connectionFactory.CreateConnection();
-        channel = connection.CreateModel();
+        _channel = _connection.CreateModel();
     }
 
     public void Publish<T>(string routingKey, T message)
     {
         string messageJson = JsonSerializer.Serialize(message);
-        var messageBytes = Encoding.UTF8.GetBytes(messageJson);
+        byte[] messageBodyInBytes = Encoding.UTF8.GetBytes(messageJson);
 
-        string exchangeName = configuration["RabbitMQ_Products_Exchange"]!;
-        channel.ExchangeDeclare(exchange: exchangeName, type: ExchangeType.Direct, durable: true);
+        //Create exchange
+        string exchangeName = "products.exchange";
+        _channel.ExchangeDeclare(exchange: exchangeName, type: ExchangeType.Direct, durable: true);
 
-        channel.BasicPublish(
-            exchange: exchangeName,
-            routingKey: routingKey,
-            basicProperties: null,
-            body: messageBytes);
+        //Publish message
+        _channel.BasicPublish(exchange: exchangeName, routingKey: routingKey, basicProperties: null, body: messageBodyInBytes);
     }
 
     public void Dispose()
     {
-        channel.Dispose();
-        connection.Dispose();
+        _channel.Dispose();
+        _connection.Dispose();
     }
 }
